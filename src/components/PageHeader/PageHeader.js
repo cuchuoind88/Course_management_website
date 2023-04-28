@@ -32,7 +32,7 @@ export default function PageHeader() {
       <div className="squares square7" />
       <Container>
         <div className="content-center brand">
-          <h1 className="h1-seo">MYE•</h1>
+          <h1 className="h1-seo">LXC•</h1>
           <h3 className="d-none d-sm-block">
             Unlock your potential through personalized online education
           </h3>

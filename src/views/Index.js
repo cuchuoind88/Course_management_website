@@ -56,7 +56,7 @@ export default function Index() {
           <div className="wrapper">
             <PageHeader />
             <div className="main">
-              <JavaScript />
+              <JavaScript formModal={formModal} setFormModal={setFormModal} />
             </div>
             <Footer />
           </div>

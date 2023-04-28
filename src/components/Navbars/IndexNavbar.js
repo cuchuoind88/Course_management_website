@@ -80,7 +80,7 @@ export default function IndexNavbar({ formModal, setFormModal }) {
       <Container>
         <div className="navbar-translate">
           <NavbarBrand to="/" tag={Link} id="navbar-brand">
-            <span>DXC• </span>
+            <span>LXC• </span>
             Learn everything
           </NavbarBrand>
           <UncontrolledTooltip placement="bottom" target="navbar-brand">
@@ -206,7 +206,7 @@ export default function IndexNavbar({ formModal, setFormModal }) {
                 color="default"
                 onClick={scrollToDownload}
               >
-                Sign Up
+                <Link to="/register-page">Sign up</Link>
               </Button>
             </NavItem>
           </Nav>

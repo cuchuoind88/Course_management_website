@@ -19,52 +19,63 @@ import React from "react";
 import classnames from "classnames";
 // react plugin used to create datetimepicker
 import ReactDatetime from "react-datetime";
+import "./Javascript.scss";
 
 // reactstrap components
-import {
-  Button,
-  FormGroup,
-  Container,
-  Row,
-  Col,
-  UncontrolledTooltip,
-  UncontrolledPopover,
-  PopoverBody,
-  PopoverHeader,
-  Modal,
-  Form,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Label,
-  UncontrolledCarousel,
-} from "reactstrap";
+import { Button, Container, Row, Col, UncontrolledCarousel } from "reactstrap";
 
-const carouselItems = [
+const carouselItems1 = [
   {
-    src: require("assets/img/denys.jpg"),
+    src: require("assets/img/reading-gd8e882300_1280.jpg"),
     altText: "Slide 1",
     caption: "",
   },
   {
-    src: require("assets/img/fabien-bazanegue.jpg"),
+    src: require("assets/img/math.jpg"),
     altText: "Slide 2",
     caption: "",
   },
   {
-    src: require("assets/img/mark-finn.jpg"),
+    src: require("assets/img/kids-g7d30be496_1280.jpg"),
     altText: "Slide 3",
     caption: "",
   },
 ];
-
-export default function JavaScript() {
-  const [demoModal, setDemoModal] = React.useState(false);
-  const [miniModal, setMiniModal] = React.useState(false);
-  const [formModal, setFormModal] = React.useState(false);
-  const [emailFocus, setEmailFocus] = React.useState(false);
-  const [passwordFocus, setPasswordFocus] = React.useState(false);
+const carouselItems2 = [
+  {
+    src: require("assets/img/never-stop-learning-g068b1f4ad_1280.jpg"),
+    altText: "Slide 1",
+    caption: "",
+  },
+  {
+    src: require("assets/img/person-g46b5d2913_1280.jpg"),
+    altText: "Slide 2",
+    caption: "",
+  },
+  {
+    src: require("assets/img/child-g7c658bb76_1920.jpg"),
+    altText: "Slide 3",
+    caption: "",
+  },
+];
+const carouselItems3 = [
+  {
+    src: require("assets/img/toddler-g38fb807fe_1280.jpg"),
+    altText: "Slide 1",
+    caption: "",
+  },
+  {
+    src: require("assets/img/teacher-g7c39a5c19_1280.jpg"),
+    altText: "Slide 2",
+    caption: "",
+  },
+  {
+    src: require("assets/img/children-g3120b8a23_1280.jpg"),
+    altText: "Slide 3",
+    caption: "",
+  },
+];
+export default function JavaScript({ formModal, setFormModal }) {
   return (
     <div className="section section-javascript" id="javascriptComponents">
       <img alt="..." className="path" src={require("assets/img/path5.png")} />
@@ -73,369 +84,85 @@ export default function JavaScript() {
         className="path path1"
         src={require("assets/img/path5.png")}
       />
-      <Container>
-        <h3 className="title mb-5">Javascript components</h3>
-        <h4 className="mb-5">Modal</h4>
-        <Row id="modals">
-          <Col md="4">
-            <Button color="primary" onClick={() => setDemoModal(true)}>
-              Launch Modal
-            </Button>
-          </Col>
-          <Col md="4">
-            <Button color="warning" onClick={() => setMiniModal(true)}>
-              Launch Modal Mini
-            </Button>
-          </Col>
-          <Col md="4">
-            <Button color="success" onClick={() => setFormModal(true)}>
-              Launch Modal Form
-            </Button>
-          </Col>
-          {/* Sart Demo Modal */}
-          <Modal isOpen={demoModal} toggle={() => setDemoModal(false)}>
-            <div className="modal-header justify-content-center">
-              <button className="close" onClick={() => setDemoModal(false)}>
-                <i className="tim-icons icon-simple-remove" />
-              </button>
-              <h4 className="title title-up">Modal title</h4>
-            </div>
-            <div className="modal-body">
-              <p>
-                Far far away, behind the word mountains, far from the countries
-                Vokalia and Consonantia, there live the blind texts. Separated
-                they live in Bookmarksgrove right at the coast of the Semantics,
-                a large language ocean. A small river named Duden flows by their
-                place and supplies it with the necessary regelialia. It is a
-                paradisematic country, in which roasted parts of sentences fly
-                into your mouth.
-              </p>
-            </div>
-            <div className="modal-footer">
-              <Button color="default" type="button">
-                Nice Button
-              </Button>
-              <Button
-                color="danger"
-                type="button"
-                onClick={() => setDemoModal(false)}
-              >
-                Close
-              </Button>
-            </div>
-          </Modal>
-          {/* End Demo Modal */}
-          {/* Start Mini Modal */}
-          <Modal
-            modalClassName="modal-mini modal-primary modal-mini"
-            isOpen={miniModal}
-            toggle={() => setMiniModal(false)}
-          >
-            <div className="modal-header justify-content-center">
-              <button className="close" onClick={() => setMiniModal(false)}>
-                <i className="tim-icons icon-simple-remove text-white" />
-              </button>
-              <div className="modal-profile">
-                <i className="tim-icons icon-single-02" />
-              </div>
-            </div>
-            <div className="modal-body">
-              <p>Always have an access to your profile</p>
-            </div>
-            <div className="modal-footer">
-              <Button className="btn-neutral" color="link" type="button">
-                Back
-              </Button>
-              <Button
-                className="btn-neutral"
-                color="link"
-                onClick={() => setMiniModal(false)}
-                type="button"
-              >
-                Close
-              </Button>
-            </div>
-          </Modal>
-          {/* End Mini Modal */}
-          {/* Start Form Modal */}
-          <Modal
-            modalClassName="modal-black"
-            isOpen={formModal}
-            toggle={() => setFormModal(false)}
-          >
-            <div className="modal-header justify-content-center">
-              <button className="close" onClick={() => setFormModal(false)}>
-                <i className="tim-icons icon-simple-remove text-white" />
-              </button>
-              <div className="text-muted text-center ml-auto mr-auto">
-                <h3 className="mb-0">Sign in with</h3>
-              </div>
-            </div>
-            <div className="modal-body">
-              <div className="btn-wrapper text-center">
-                <Button
-                  className="btn-neutral btn-icon"
-                  color="default"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <img alt="..." src={require("assets/img/search.png")} />
-                </Button>
-                <Button
-                  className="btn-neutral btn-icon"
-                  color="default"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <img alt="..." src={require("assets/img/facebook.png")} />
-                </Button>
-              </div>
-              <div className="text-center text-muted mb-4 mt-3">
-                <small>Or sign in with credentials</small>
-              </div>
-              <Form role="form">
-                <FormGroup className="mb-3">
-                  <InputGroup
-                    className={classnames("input-group-alternative", {
-                      "input-group-focus": emailFocus,
-                    })}
-                  >
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="tim-icons icon-email-85" />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input
-                      placeholder="Email"
-                      type="email"
-                      onFocus={(e) => setEmailFocus(true)}
-                      onBlur={(e) => setEmailFocus(false)}
-                    />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup>
-                  <InputGroup
-                    className={classnames("input-group-alternative", {
-                      "input-group-focus": passwordFocus,
-                    })}
-                  >
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="tim-icons icon-key-25" />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input
-                      placeholder="Password"
-                      type="password"
-                      onFocus={(e) => setPasswordFocus(true)}
-                      onBlur={(e) => setPasswordFocus(false)}
-                    />
-                  </InputGroup>
-                </FormGroup>
-                <FormGroup check className="mt-3">
-                  <Label check>
-                    <Input defaultChecked type="checkbox" />
-                    <span className="form-check-sign" />
-                    Remember me!
-                  </Label>
-                </FormGroup>
-                <div className="text-center">
-                  <Button className="my-4" color="primary" type="button">
-                    Sign in
-                  </Button>
-                </div>
-              </Form>
-            </div>
-          </Modal>
-          {/* End Form Modal */}
-        </Row>
-        <br />
-        <br />
-        <h4 className="mb-5 mt-3">Datepicker</h4>
-        <Row>
-          <Col md="4">
-            <div className="datepicker-container">
-              <FormGroup>
-                <ReactDatetime
-                  inputProps={{
-                    className: "form-control",
-                    placeholder: "Date Picker Here",
-                  }}
-                />
-              </FormGroup>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col md="6">
-            <h4 className="mb-5 mt-3">Popovers</h4>
-            <Button
-              color="default"
-              data-container="body"
-              data-content="Here will be some very useful information about his popover."
-              data-placement="top"
-              id="tooltip657685043"
-              size="sm"
-              type="button"
-            >
-              On top
-            </Button>
-            <UncontrolledPopover placement="top" target="tooltip657685043">
-              <PopoverHeader>Popover on Top</PopoverHeader>
-              <PopoverBody>
-                Here will be some very useful information about his popover.
-              </PopoverBody>
-            </UncontrolledPopover>
-            <Button
-              color="default"
-              data-container="body"
-              data-content="Here will be some very useful information about his popover.<br>
- Here will be some very useful information about his popover."
-              data-placement="right"
-              id="tooltip72798464"
-              size="sm"
-              type="button"
-            >
-              On right
-            </Button>
-            <UncontrolledPopover placement="right" target="tooltip72798464">
-              <PopoverHeader>Popover on Right</PopoverHeader>
-              <PopoverBody>
-                Here will be some very useful information about his popover.
-                <br /> Here will be some very useful information about his
-                popover.
-              </PopoverBody>
-            </UncontrolledPopover>
-            <Button
-              color="default"
-              data-container="body"
-              data-content="Here will be some very useful information about his popover."
-              data-placement="bottom"
-              id="tooltip995717467"
-              size="sm"
-              type="button"
-            >
-              On bottom
-            </Button>
-            <UncontrolledPopover placement="bottom" target="tooltip995717467">
-              <PopoverHeader>Popover on Bottom</PopoverHeader>
-              <PopoverBody>
-                Here will be some very useful information about his popover.
-              </PopoverBody>
-            </UncontrolledPopover>
-            <Button
-              color="default"
-              data-color="primary"
-              data-container="body"
-              data-content="Here will be some very useful information about his popover."
-              data-placement="left"
-              id="tooltip31162359"
-              size="sm"
-              type="button"
-            >
-              On left
-            </Button>
-            <UncontrolledPopover placement="left" target="tooltip31162359">
-              <PopoverHeader>Popover On Left</PopoverHeader>
-              <PopoverBody>
-                Here will be some very useful information about his popover.
-              </PopoverBody>
-            </UncontrolledPopover>
-          </Col>
-          <Col md="6">
-            <h4 className="mb-5 mt-3">Tooltips</h4>
-            <Button
-              className="btn-tooltip"
-              color="default"
-              id="tooltip376048342"
-              size="sm"
-            >
-              On left
-            </Button>
-            <UncontrolledTooltip
-              delay={0}
-              placement="left"
-              target="tooltip376048342"
-            >
-              Tooltip on left
-            </UncontrolledTooltip>
-            <Button
-              className="btn-tooltip"
-              color="default"
-              id="tooltip297889956"
-              size="sm"
-            >
-              On top
-            </Button>
-            <UncontrolledTooltip
-              delay={0}
-              placement="top"
-              target="tooltip297889956"
-            >
-              Tooltip on top
-            </UncontrolledTooltip>
-            <Button
-              className="btn-tooltip"
-              color="default"
-              id="tooltip789511871"
-              size="sm"
-            >
-              On bottom
-            </Button>
-            <UncontrolledTooltip
-              delay={0}
-              placement="bottom"
-              target="tooltip789511871"
-            >
-              Tooltip on bottom
-            </UncontrolledTooltip>
-            <Button
-              className="btn-tooltip"
-              color="default"
-              id="tooltip353488548"
-              size="sm"
-            >
-              On right
-            </Button>
-            <UncontrolledTooltip
-              delay={0}
-              placement="right"
-              target="tooltip353488548"
-            >
-              Tooltip on right
-            </UncontrolledTooltip>
-            <div className="clearfix" />
-            <br />
-            <br />
-          </Col>
-        </Row>
-      </Container>
+      <br />
       <div className="section">
         <Container>
           <div className="title">
-            <h3>Carousel</h3>
+            <h1>About us</h1>
           </div>
-          <Row className="justify-content-between align-items-center">
+          <Row className="justify-content-between align-items-center ">
             <Col className="mb-5 mb-lg-0" lg="5">
-              <h1 className="text-white font-weight-light">
-                Bootstrap carousel
+              <h1 className="text-black font-weight-light lh-lg">
+                Take the next step toward your personal and professional goals
+                with LXC.
               </h1>
-              <p className="text-white mt-4">
-                Black Design comes with three pre-built pages to help you get
-                started faster. You can change the text and images and you're
-                good to go.
+              <p className="text-black mt-4 lh-lg">
+                Join now to receive personalized recommendations from the full
+                Coursera LXC.
               </p>
               <Button
                 className="mt-4"
                 color="warning"
-                href="https://demos.creative-tim.com/blk-design-system-react/#/documentation/alert"
+                onClick={() => setFormModal(true)}
               >
-                See all components
+                Click for detail
               </Button>
             </Col>
             <Col lg="6">
               <UncontrolledCarousel
-                items={carouselItems}
+                items={carouselItems1}
+                indicators={false}
+                autoPlay={false}
+              />
+            </Col>
+          </Row>
+          <Row className="justify-content-between align-items-center mt-5 intro">
+            <Col lg="6">
+              <UncontrolledCarousel
+                items={carouselItems2}
+                indicators={false}
+                autoPlay={false}
+              />
+            </Col>
+            <Col className="mb-5 mb-lg-0" lg="5">
+              <h1 className="text-black font-weight-light lh-lg">
+                Learn from anywhere, at any time!
+              </h1>
+              <p className="text-black mt-4 lh-lg">
+                Our online learning platform offers a variety of courses to help
+                you achieve your goals. Start learning today and unlock your
+                potential!
+              </p>
+              <Button
+                className="mt-4"
+                color="warning"
+                onClick={() => setFormModal(true)}
+              >
+                Join with us
+              </Button>
+            </Col>
+          </Row>
+          <Row className="justify-content-between align-items-center intro">
+            <Col className="mb-5 mb-lg-0" lg="5">
+              <h1 className="text-black font-weight-light lh-lg">
+                Take the next step toward your personal and professional goals
+                with LXC.
+              </h1>
+              <p className="text-black mt-4 lh-lg">
+                Join now to receive personalized recommendations from the full
+                Coursera LXC.
+              </p>
+              <Button
+                className="mt-4"
+                color="warning"
+                onClick={() => setFormModal(true)}
+              >
+                Click for detail
+              </Button>
+            </Col>
+            <Col lg="6">
+              <UncontrolledCarousel
+                items={carouselItems3}
                 indicators={false}
                 autoPlay={false}
               />

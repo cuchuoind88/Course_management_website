@@ -40,7 +40,7 @@ import {
   Row,
   Col,
   UncontrolledTooltip,
-  UncontrolledCarousel
+  UncontrolledCarousel,
 } from "reactstrap";
 
 // core components
@@ -51,18 +51,18 @@ const carouselItems = [
   {
     src: require("assets/img/denys.jpg"),
     altText: "Slide 1",
-    caption: "Big City Life, United States"
+    caption: "Big City Life, United States",
   },
   {
-    src: require("assets/img/fabien-bazanegue.jpg"),
+    src: require("assets/img/never-stop-learning-g068b1f4ad_1280.jpg"),
     altText: "Slide 2",
-    caption: "Somewhere Beyond, United States"
+    caption: "Somewhere Beyond, United States",
   },
   {
     src: require("assets/img/mark-finn.jpg"),
     altText: "Slide 3",
-    caption: "Stocks, United States"
-  }
+    caption: "Stocks, United States",
+  },
 ];
 
 let ps = null;
@@ -172,7 +172,7 @@ export default function ProfilePage() {
                       <NavItem>
                         <NavLink
                           className={classnames({
-                            active: tabs === 1
+                            active: tabs === 1,
                           })}
                           onClick={(e) => {
                             e.preventDefault();
@@ -186,7 +186,7 @@ export default function ProfilePage() {
                       <NavItem>
                         <NavLink
                           className={classnames({
-                            active: tabs === 2
+                            active: tabs === 2,
                           })}
                           onClick={(e) => {
                             e.preventDefault();
@@ -200,7 +200,7 @@ export default function ProfilePage() {
                       <NavItem>
                         <NavLink
                           className={classnames({
-                            active: tabs === 3
+                            active: tabs === 3,
                           })}
                           onClick={(e) => {
                             e.preventDefault();
