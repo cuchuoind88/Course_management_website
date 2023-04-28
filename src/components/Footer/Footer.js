@@ -35,7 +35,7 @@ export default function Footer() {
       <Container>
         <Row>
           <Col md="3">
-            <h1 className="title">MYE•</h1>
+            <h1 className="title">LXC•</h1>
           </Col>
           <Col md="3">
             <Nav>

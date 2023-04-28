@@ -35,7 +35,7 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-
+import "./IndexNavbar.scss";
 export default function IndexNavbar({ formModal, setFormModal }) {
   console.log(formModal);
   const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -107,7 +107,7 @@ export default function IndexNavbar({ formModal, setFormModal }) {
             <Row>
               <Col className="collapse-brand" xs="6">
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  DXC•
+                  LXC•
                 </a>
               </Col>
               <Col className="collapse-close text-right" xs="6">
@@ -158,7 +158,9 @@ export default function IndexNavbar({ formModal, setFormModal }) {
                 <p className="d-lg-none d-xl-none">Instagram</p>
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav>
+
+            {/*
+           <UncontrolledDropdown nav>
               <DropdownToggle
                 caret
                 color="default"
@@ -188,10 +190,10 @@ export default function IndexNavbar({ formModal, setFormModal }) {
                   Profile Page
                 </DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown>
+            </UncontrolledDropdown>*/}
             <NavItem>
               <Button
-                className="nav-link d-none d-lg-block"
+                className="nav-link d-none d-lg-block sign-in"
                 color="primary"
                 target="_blank"
                 href=""
@@ -202,7 +204,7 @@ export default function IndexNavbar({ formModal, setFormModal }) {
             </NavItem>
             <NavItem>
               <Button
-                className="nav-link d-none d-lg-block"
+                className="nav-link d-none d-lg-block sign-up"
                 color="default"
                 onClick={scrollToDownload}
               >

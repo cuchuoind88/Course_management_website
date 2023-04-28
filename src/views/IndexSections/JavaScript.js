@@ -145,19 +145,18 @@ export default function JavaScript({ formModal, setFormModal }) {
           <Row className="justify-content-between align-items-center intro">
             <Col className="mb-5 mb-lg-0" lg="5">
               <h1 className="text-black font-weight-light lh-lg">
-                Take the next step toward your personal and professional goals
-                with LXC.
+                Become an instructor
               </h1>
               <p className="text-black mt-4 lh-lg">
-                Join now to receive personalized recommendations from the full
-                Coursera LXC.
+                Instructors from around the world teach millions of students on
+                Udemy. We provide the tools and skills to teach what you love.
               </p>
               <Button
                 className="mt-4"
                 color="warning"
                 onClick={() => setFormModal(true)}
               >
-                Click for detail
+                Start teaching today
               </Button>
             </Col>
             <Col lg="6">
