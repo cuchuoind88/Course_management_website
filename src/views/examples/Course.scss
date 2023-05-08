@@ -1,0 +1,86 @@
+.wrapper
+{   background-color: #fff;
+    
+    p{
+        margin-bottom: 0;
+    }
+    .course_header
+    {
+      margin-top: 56px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      background-image: url("https://eduvibe.devsvibe.com/main/wp-content/themes/eduvibe/assets/images/eduvibe-breadcrumb-bg.jpg");
+      h1 {
+        margin-bottom: 0;
+      }
+      h3 {
+      padding-top:  10px;
+      }
+    }
+}
+.course_body
+{
+    h1 {
+        padding-top: 20px;
+    }
+    .card 
+    {
+       transition: transform 500ms;
+        .card-body
+        {
+            background-color: #F1F6F9;
+            
+        }
+        .card-title
+        {
+            color: black;
+            font-weight: 600;
+        }
+        .card-subtitle
+        {
+            padding-top: 10px;
+            display: flex;
+            i{
+                font-size: 16px;
+                color: black;
+
+            }
+            p {
+                color: black;
+                font-size: 14px;
+                padding-left: 7px;
+                text-transform: lowercase;
+                padding-top: 2px;
+            }
+        }
+        .card-text
+        {
+            color: black;
+            display: flex;
+            justify-content: space-between;
+             font-weight: 500;
+            font-size: 12px;
+            line-height: 1.5;
+            padding-bottom: 10px;
+            .Price , .Enrollment
+            {
+                display: flex;
+                p {
+                    color: black;
+                    font-size: 14px;
+                    padding-left: 7px;
+                    text-transform: lowercase;
+                }
+                i{
+                    font-size: 16px;
+                    color: black;
+                }
+            }
+           
+           
+        }
+    }
+    .card:hover {
+        transform: scale(1.08);
+    }
+}
