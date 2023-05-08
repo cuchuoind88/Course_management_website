@@ -51,11 +51,12 @@ export default function RegisterPage() {
         username: values.userName,
         email: values.email,
         password: values.password,
+        role: "student",
       })
       .then((response) => {
         setLoading(false);
-        history.push("/");
-        console.log(response);
+        history.push("/courses");
+        localStorage.setItem("token", response.data.token);
       })
       .catch((err) => {
         if (err.response) {

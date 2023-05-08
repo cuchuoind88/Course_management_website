@@ -1,22 +1,7 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // reactstrap components
 import {
   Button,
@@ -35,18 +20,28 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
+import { useHistory } from "react-router-dom";
 import "./IndexNavbar.scss";
 export default function IndexNavbar({ formModal, setFormModal }) {
   console.log(formModal);
+  const LXCstate = useSelector((state) => state);
+  console.log(LXCstate);
+  const dispatch = useDispatch();
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
+  const history = useHistory();
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
       window.removeEventListener("scroll", changeColor);
     };
   }, []);
+  const handleLogout = () => {
+    dispatch({
+      type: "LOG_OUT",
+    });
+  };
   const changeColor = () => {
     if (
       document.documentElement.scrollTop > 99 ||
@@ -158,59 +153,55 @@ export default function IndexNavbar({ formModal, setFormModal }) {
                 <p className="d-lg-none d-xl-none">Instagram</p>
               </NavLink>
             </NavItem>
-
-            {/*
-           <UncontrolledDropdown nav>
-              <DropdownToggle
-                caret
-                color="default"
-                data-toggle="dropdown"
-                href="#pablo"
-                nav
-                onClick={(e) => e.preventDefault()}
-              >
-                <i className="fa fa-cogs d-lg-none d-xl-none" />
-                Getting started
-              </DropdownToggle>
-              <DropdownMenu className="dropdown-with-icons">
-                <DropdownItem href="https://demos.creative-tim.com/blk-design-system-react/#/documentation/overview">
-                  <i className="tim-icons icon-paper" />
-                  Documentation
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/register-page">
-                  <i className="tim-icons icon-bullet-list-67" />
-                  Register Page
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/landing-page">
-                  <i className="tim-icons icon-image-02" />
-                  Landing Page
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/profile-page">
-                  <i className="tim-icons icon-single-02" />
-                  Profile Page
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>*/}
-            <NavItem>
-              <Button
-                className="nav-link d-none d-lg-block sign-in"
-                color="primary"
-                target="_blank"
-                href=""
-                onClick={() => setFormModal(true)}
-              >
-                <i className="tim-icons icon-spaceship" /> Sign In
-              </Button>
-            </NavItem>
-            <NavItem>
-              <Button
-                className="nav-link d-none d-lg-block sign-up"
-                color="default"
-                onClick={scrollToDownload}
-              >
-                <Link to="/register-page">Sign up</Link>
-              </Button>
-            </NavItem>
+            {LXCstate.auth.username && (
+              <UncontrolledDropdown nav>
+                <DropdownToggle
+                  caret
+                  color="default"
+                  data-toggle="dropdown"
+                  href="#pablo"
+                  nav
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <i className="fa fa-cogs d-lg-none d-xl-none" />
+                  Account
+                </DropdownToggle>
+                <DropdownMenu className="dropdown-with-icons">
+                  <DropdownItem onClick={handleLogout}>
+                    <i className="tim-icons icon-user-run" />
+                    Log out
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/profile-page">
+                    <i className="tim-icons icon-single-02" />
+                    Profile Page
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            )}
+            {!LXCstate.auth.username && (
+              <>
+                <NavItem>
+                  <Button
+                    className="nav-link d-none d-lg-block sign-in"
+                    color="primary"
+                    target="_blank"
+                    href=""
+                    onClick={() => setFormModal(true)}
+                  >
+                    <i className="tim-icons icon-spaceship" /> Sign In
+                  </Button>
+                </NavItem>
+                <NavItem>
+                  <Button
+                    className="nav-link d-none d-lg-block sign-up"
+                    color="default"
+                    onClick={scrollToDownload}
+                  >
+                    <Link to="/register-page">Sign up</Link>
+                  </Button>
+                </NavItem>
+              </>
+            )}
           </Nav>
         </Collapse>
       </Container>

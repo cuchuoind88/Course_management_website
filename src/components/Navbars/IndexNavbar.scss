@@ -1,0 +1,19 @@
+@media screen and (max-width:991px){
+    .sign-in 
+    { 
+       display: flex!important;
+       width: 100px;
+       padding-left: 5px!important;
+
+    }
+    .sign-in > i {
+        color: black!important;
+    }
+    .sign-up {
+        display: flex!important;
+        margin-top: 9px!important;
+        width: 100px;
+        justify-content: center;
+        
+    }
+}

@@ -46,7 +46,7 @@ import {
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import Footer from "components/Footer/Footer.js";
-
+import { useSelector } from "react-redux";
 const carouselItems = [
   {
     src: require("assets/img/denys.jpg"),
@@ -69,6 +69,8 @@ let ps = null;
 
 export default function ProfilePage() {
   const [tabs, setTabs] = React.useState(1);
+  const LXCstate = useSelector((state) => state);
+  console.log(LXCstate);
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";

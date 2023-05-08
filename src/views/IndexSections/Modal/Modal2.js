@@ -2,28 +2,21 @@ import React from "react";
 import {
   Button,
   FormGroup,
-  Container,
-  Row,
-  Col,
-  UncontrolledTooltip,
-  UncontrolledPopover,
-  PopoverBody,
-  PopoverHeader,
   Modal,
-  Form,
   Input,
-  InputGroup,
   InputGroupAddon,
   InputGroupText,
   Label,
-  UncontrolledCarousel,
 } from "reactstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-export default function Modal_custom({
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import jwt_decode from "jwt-decode";
+export default function Modal2({
   formModal,
   setFormModal,
   loading,
@@ -31,6 +24,28 @@ export default function Modal_custom({
   error,
   setError,
 }) {
+  const dispatch = useDispatch();
+  const LXCstate = useSelector((state) => state);
+
+  //Get user inform after login
+  const grabUserDetails = () => {
+    axios
+      .get("http://localhost:2002/student/view-profile", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        dispatch({
+          type: "POPULATE_USER_DETAILS",
+          payload: response.data.result,
+        });
+        console.log(LXCstate);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const url = "http://localhost:2002/student/login";
   const history = useHistory();
   const [bder, setBoder] = useState("");
@@ -44,8 +59,16 @@ export default function Modal_custom({
       })
       .then((response) => {
         setLoading(false);
-        history.push("/profile-page");
-        console.log(response);
+        history.push("/courses");
+        localStorage.setItem("token", response.data.token);
+        const decode = jwt_decode(response.data.token);
+        console.log(decode);
+        dispatch({
+          type: "LOG_IN",
+          payload: decode,
+        });
+        console.log(LXCstate);
+        grabUserDetails();
       })
       .catch((err) => {
         if (err.response) {
@@ -75,6 +98,7 @@ export default function Modal_custom({
   const HandleBorderColor = () => {
     setBoder("blue");
   };
+
   return (
     <Modal
       modalClassName="modal-black"
