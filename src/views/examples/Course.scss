@@ -24,8 +24,11 @@
         padding-top: 20px;
     }
     .card 
-    {
+    {  
        transition: transform 500ms;
+       img {
+        object-fit: contain;
+       }
         .card-body
         {
             background-color: #F1F6F9;
@@ -54,7 +57,7 @@
             }
         }
         .card-text
-        {
+        {   min-height: 64px;
             color: black;
             display: flex;
             justify-content: space-between;
@@ -70,10 +73,12 @@
                     font-size: 14px;
                     padding-left: 7px;
                     text-transform: lowercase;
+                    font-weight: 550;
                 }
                 i{
                     font-size: 16px;
                     color: black;
+                    font-weight: 550;
                 }
             }
            
@@ -82,5 +87,6 @@
     }
     .card:hover {
         transform: scale(1.08);
+        cursor: pointer;
     }
 }
