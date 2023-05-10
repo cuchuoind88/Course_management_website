@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 // reactstrap components
 import {
   Button,
@@ -20,7 +21,6 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-import { useHistory } from "react-router-dom";
 import "./IndexNavbar.scss";
 export default function IndexNavbar({ formModal, setFormModal }) {
   console.log(formModal);
@@ -29,8 +29,30 @@ export default function IndexNavbar({ formModal, setFormModal }) {
   const dispatch = useDispatch();
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
-  const [color, setColor] = React.useState("navbar-transparent");
-  const history = useHistory();
+  const [isCoursePage, setIsCoursePage] = useState(() => {
+    if (window.location.pathname === "/courses") {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  console.log(isCoursePage);
+  const x = isCoursePage ? "bg-info" : "navbar-transparent";
+  const [color, setColor] = React.useState(`${x}`);
+  const changeColor = () => {
+    if (
+      document.documentElement.scrollTop > 49 ||
+      document.body.scrollTop > 49
+    ) {
+      setColor("bg-info");
+    } else if (
+      (document.documentElement.scrollTop < 50 ||
+        document.body.scrollTop < 50) &&
+      !isCoursePage
+    ) {
+      setColor("navbar-transparent");
+    }
+  };
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
@@ -38,22 +60,11 @@ export default function IndexNavbar({ formModal, setFormModal }) {
     };
   }, []);
   const handleLogout = () => {
+    localStorage.removeItem("token");
+    alert("You are logged out");
     dispatch({
       type: "LOG_OUT",
     });
-  };
-  const changeColor = () => {
-    if (
-      document.documentElement.scrollTop > 99 ||
-      document.body.scrollTop > 99
-    ) {
-      setColor("bg-info");
-    } else if (
-      document.documentElement.scrollTop < 100 ||
-      document.body.scrollTop < 100
-    ) {
-      setColor("navbar-transparent");
-    }
   };
   const toggleCollapse = () => {
     document.documentElement.classList.toggle("nav-open");
@@ -168,7 +179,7 @@ export default function IndexNavbar({ formModal, setFormModal }) {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-with-icons">
                   <DropdownItem onClick={handleLogout}>
-                    <i className="tim-icons icon-user-run" />
+                    <i className="tim-icons icon-user-run" s />
                     Log out
                   </DropdownItem>
                   <DropdownItem tag={Link} to="/profile-page">

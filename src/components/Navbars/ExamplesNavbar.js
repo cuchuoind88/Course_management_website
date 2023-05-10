@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* BLK Design System React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
@@ -31,11 +14,13 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-
+import { useSelector } from "react-redux";
 export default function ExamplesNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
+  const LXCstate = useSelector((state) => state);
+  console.log(LXCstate.auth);
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
@@ -151,7 +136,9 @@ export default function ExamplesNavbar() {
             <NavItem>
               <NavLink>
                 <i className="tim-icons icon-spaceship" />
-                <Link to="/">Back to home</Link>
+                <Link to={LXCstate.auth.username ? "/courses" : "/"}>
+                  Back to home
+                </Link>
               </NavLink>
             </NavItem>
           </Nav>

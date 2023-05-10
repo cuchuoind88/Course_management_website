@@ -1,22 +1,22 @@
-.wrapper
+.wrapper_course
 {   background-color: #fff;
-    
+   
     p{
         margin-bottom: 0;
     }
-    .course_header
-    {
-      margin-top: 56px;
-      padding-top: 80px;
-      padding-bottom: 80px;
-      background-image: url("https://eduvibe.devsvibe.com/main/wp-content/themes/eduvibe/assets/images/eduvibe-breadcrumb-bg.jpg");
-      h1 {
-        margin-bottom: 0;
-      }
-      h3 {
-      padding-top:  10px;
-      }
-    }
+    // .course_header
+    // {
+    //   margin-top: 56px;
+    //   padding-top: 80px;
+    //   padding-bottom: 80px;
+    //   background-image: url("https://eduvibe.devsvibe.com/main/wp-content/themes/eduvibe/assets/images/eduvibe-breadcrumb-bg.jpg");
+    //   h1 {
+    //     margin-bottom: 0;
+    //   }
+    //   h3 {
+    //   padding-top:  10px;
+    //   }
+    // }
 }
 .course_body
 {
@@ -25,6 +25,49 @@
     }
     .card 
     {  
+        .card_wrapper
+        { 
+            padding: 20px;
+            background-color: rgb(245,245 ,245 );
+            .thumbnail
+            {    position: relative;
+                .time_discount::after{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    border-top: 5px solid;
+                    border-left: 11px solid transparent;
+                    border-right: transparent;
+                    border-bottom: transparent;
+                    color:#f86f03;
+                    left: 0;
+                    top:30px;
+                  
+                }
+                .time_discount
+                {   
+                    position: absolute;
+                    box-shadow:2px 2px 0px rgba(0,0,0,0.1) ;
+                    left: -15px;
+                    top: 10px;
+                    color: white;
+                    font-size: 14px;
+                    font-weight: 600;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0 12px;
+                    background: #f86f03;
+                    border-radius: 0 3px 3px 0;
+                    display: flex;
+                    align-items: center;
+                    margin: 5px;
+                    i {
+                        font-size: 12px;
+                        padding-right: 5px;
+                    }
+                }
+            }
+        }
        transition: transform 500ms;
        img {
         object-fit: contain;
@@ -32,12 +75,16 @@
         .card-body
         {
             background-color: #F1F6F9;
-            
+            button {
+                transform: translateX(7%);
+            }
         }
         .card-title
         {
             color: black;
             font-weight: 600;
+            max-height: 100px;
+            overflow: hidden;
         }
         .card-subtitle
         {

@@ -1,0 +1,133 @@
+.course_Detail_body
+{    padding-bottom: 20px;
+    
+        .card_wrapper
+        {
+            padding: 18px;
+            background-color: rgb(245,245 ,245 );
+        }
+        // .row 
+        // {
+        //     .col 
+        //     {
+        //         display: flex;
+        //         justify-content: center;
+        //     }
+        // }
+      
+    .card
+    {
+        transition: transform 500ms;
+    }
+    .card:hover {
+        transform: scale(1.08);
+        cursor: pointer;
+    }
+    background-color: #fff; 
+    .certification
+    {
+        margin-bottom: 10px;
+        line-height: 1.9;
+    }
+    .course_desc_title
+    {
+        margin-top: 20px;
+    }
+   .course_Detail_title
+   {
+   
+    h1 {
+        font-size: 40px;
+        font-weight: 800;
+        line-height: 1.4;
+        margin-bottom: 50px;
+    }
+   }
+   .Course_Desc 
+   {
+    line-height: 1.8;
+   }
+   ul  
+   {
+       padding-left: 15px;
+       li {
+        color: black;
+        line-height: 1.9;
+       }
+   }
+   .card 
+   {
+
+    .card-title
+    {
+        color: white;
+        font-weight: 600;
+    }
+    .card-subtitle
+    {
+        padding-top: 10px;
+        display: flex;
+        i{
+            font-size: 16px;
+            color: white;
+
+        }
+        p {
+            color: white;
+            font-size: 14px;
+            padding-left: 7px;
+            text-transform: lowercase;
+            padding-top: 2px;
+        }
+    }
+   }
+   .Price , .Enrollment
+            {
+                display: flex;
+                p {
+                    color: white;
+                    font-size: 14px;
+                    padding-left: 7px;
+                    text-transform: lowercase;
+                    font-weight: 550;
+                }
+                i{
+                    font-size: 16px;
+                    color: white;
+                    font-weight: 550;
+                }
+            }
+            .card-body
+            {
+                background-color: #F8A600;
+            }
+            .card-text
+            {   min-height: 64px;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                 font-weight: 500;
+                font-size: 12px;
+                line-height: 1.5;
+                padding-bottom: 10px;
+                .Price , .Enrollment
+                {
+                    display: flex;
+                    p {
+                        color: white;
+                        font-size: 14px;
+                        padding-left: 7px;
+                        text-transform: lowercase;
+                        font-weight: 550;
+                    }
+                    i{
+                        font-size: 16px;
+                        color: white;
+                        font-weight: 550;
+                    }
+                }
+               
+               
+            }
+          
+}

@@ -449,9 +449,7 @@
 }
 
 .register-page{
-
-    background-color: $background-black;
-
+    background-color: #f3a4b5;
     .link{
         font-size: 10px;
         color: $white;
@@ -554,7 +552,7 @@
 
 .landing-page,
 .index-page{
-  background-color: aliceblue;
+  background-color: aliceblue !important;
   background-size: contain;
 }
 
