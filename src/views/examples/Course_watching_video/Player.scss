@@ -1,0 +1,26 @@
+       .Course_wrapper_video
+        {
+            // padding-left: 30px;
+            // padding-right: 30px;
+            background-color:#222a42 ;
+        }
+        .Player_wrapper
+        {   position: relative;
+            padding-top: 56.25%;
+           .React_player
+           {
+            position: absolute;
+            top: 0;
+            left: 0;
+           }
+        }
+        .Player_title
+        {
+         margin-top: 30px;
+        }
+        .Player_desc
+        {
+            line-height: 1.9;
+            color: black;
+            margin-bottom: 20px;
+        }

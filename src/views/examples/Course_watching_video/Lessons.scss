@@ -1,0 +1,26 @@
+.lesson_list
+{    
+    .lesson_item
+    {
+        display: flex;
+        justify-content: space-between;
+        padding:10px 15px 10px 15px ;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        .icon_complete {
+            color: #5db85c;
+        }
+        p {
+            margin: 0;
+        }
+    }
+    .lesson_item:hover
+    {
+        background-color: #edeff1;
+        cursor: pointer;
+    }
+    .active
+    {
+        background: rgba(240,81,35,.2);
+    }
+}

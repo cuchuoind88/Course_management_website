@@ -1,0 +1,16 @@
+.header_chapter
+    {
+        display: flex;
+        justify-content: space-between;
+        border-bottom :1px solid #dedfe0;
+        padding: 8px 20px;
+        align-items: center;
+        background-color: #f7f8fa;
+      h4 {
+        margin: 0;
+      }
+    }
+    .header_chapter:hover {
+        background-color: #edeff1;
+        cursor: pointer;
+    }

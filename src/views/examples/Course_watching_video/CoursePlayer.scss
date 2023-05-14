@@ -1,0 +1,20 @@
+.Course_Watching
+{
+    background-color: #fff;
+   
+    .Course_Player_body
+    {  
+        
+       .sidebar_col
+       {
+        height: 600px;
+        overflow-y: overlay;
+       }
+      
+     
+    }
+}
+.Course_Watching::-webkit-scrollbar
+{
+    display: none;
+}
