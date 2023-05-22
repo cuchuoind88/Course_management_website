@@ -1,0 +1,110 @@
+.Comment_wrapper
+{
+    background-color: #fff;
+    padding: 40px 60px 40px 60px;
+    display:block;
+    margin-top: 16px;
+    .input_comment
+    {   
+        display: flex;
+        border-left: 2px solid rgb(248, 166, 0);
+        margin-bottom: 60px;
+        .comment_right
+        {  display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+            input 
+            {
+                outline: none;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid #ccc;
+                padding: 5px;
+                width: 300px;
+              
+            }
+            .comment_btn
+            {
+                padding: 10px 16px;
+                font-size: 13px;
+                font-weight: 500;
+               color: #fff;
+               background-color: #f05123;
+               border-radius: 20px;
+               display: inline-block;
+               width: 100px;
+               margin-top: 20px;
+               border: none;
+               outline: none;
+              
+            }
+        }
+        .comment_avatar
+        {
+            background: transparent;
+            border-radius: 50%;
+            margin-right: 12px;
+            margin-left: 20px;
+            img {
+                border-radius: 50%;
+                height: 38px;
+                object-fit: cover;
+                width: 38px;
+            }
+
+        }
+    }
+    .comment_content_wrapper
+    {
+         overflow-y: scroll;
+         max-height: 500px;
+         
+        .Comment_content
+        {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            .comment_content_avatar
+            {
+                background: transparent;
+                border-radius: 50%;
+                margin-right: 12px;
+                margin-left: 10px;
+                img {
+                    border-radius: 50%;
+                    height: 38px;
+                    object-fit: cover;
+                    width: 38px;
+                }
+            }
+            .Comment_body
+            {
+                display: flex;
+                flex-direction: column;
+                max-width: 500px;
+                min-width: 400px;
+                background-color: #f2f3f5;
+                border-radius: 18px;
+                color: #1c1e21;
+                margin-left: 15px;;
+                padding: 9px 12px;
+                .Comment_heading
+                {
+                    color: var(--black-color);
+                    display: inline-block;
+                    font-size: 13px;
+                    font-weight: 600;
+                    margin: 0;
+                }
+                .Content_text
+                {
+                    margin-top: 10px;
+                }
+    
+            }
+        }
+    }
+   
+}

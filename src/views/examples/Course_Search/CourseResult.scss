@@ -1,0 +1,29 @@
+.Course_result_item
+{   display: flex;
+  
+    padding: 6px 0;
+   
+    align-items: center;
+    background-color: #fff;
+    .Course_result_image
+    {       width: 40px;
+            border-radius: 50%;
+           
+    }
+    .Course_result_content
+    {
+        display: flex;
+        flex-direction: column;
+        .Course_result_title {
+            margin-left: 12px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            overflow: hidden;
+            
+        }
+      
+    }
+}
+.Course_result_item:hover{
+    background-color: #ccc;
+}
