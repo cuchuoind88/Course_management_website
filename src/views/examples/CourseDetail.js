@@ -3,11 +3,11 @@ import LoadingScreen2 from "components/LoadingScreen/LoadingScreen2";
 import axios from "axios";
 import "./CourseDetail.scss";
 import { Container } from "reactstrap";
-import IndexNavbar from "components/Navbars/IndexNavbar";
+import { Redirect } from "react-router-dom";
 import { Row, Col } from "reactstrap";
 import Footer from "components/Footer/Footer";
+import { useHistory } from "react-router-dom";
 import CourseHeader from "./Course_header/CourseHeader";
-import { Link } from "react-router-dom";
 import {
   CardBody,
   CardTitle,
@@ -20,13 +20,48 @@ import {
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar";
 export default function CourseDetail() {
   const { courseId } = useParams();
+  const [orderLink, setLink] = useState("");
+  console.log(orderLink);
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
   const [course, setCourse] = useState({});
-  const url = `http://localhost:2002/course/${courseId}`;
-
+  const url = `http://localhost:2002/course/view/${courseId}`;
+  const LXCstate = useSelector((state) => state);
+  const EnrollCourse = async () => {
+    //Kiem tra xem da thanh toan khoa hoc va enroll vao khoa hoc do chua
+    if (LXCstate.userDetails.enrolledCourse.indexOf(`${courseId}`) !== -1) {
+      history.push(`/watching/${courseId}`);
+    } else {
+      await axios
+        .post(
+          `http://localhost:2002/course/enroll/${courseId}`,
+          {
+            price: course.price,
+            courseId: courseId,
+            courseName: course.title,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          window.location.href = response.data.url;
+          // history.push(``);
+        })
+        .catch((err) => {
+          if (err.response) {
+            console.log(err.response.status);
+          }
+        });
+    }
+  };
   useEffect(() => {
     axios
       .get(url, {
@@ -39,7 +74,8 @@ export default function CourseDetail() {
         setLoading(false);
       });
   }, []);
-  return (
+
+  return LXCstate.auth.username ? (
     <>
       <ExamplesNavbar />
       <div className="course_Detail_body">
@@ -90,10 +126,8 @@ export default function CourseDetail() {
                   Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
                   maecenas accumsan lacus vel facilisis.
                 </p>
-                <Button color="warning">
-                  <Link to="/" className="text-white">
-                    Enroll
-                  </Link>
+                <Button color="warning" onClick={EnrollCourse}>
+                  Enroll
                 </Button>
               </Col>
               <Col>
@@ -134,5 +168,7 @@ export default function CourseDetail() {
       </div>
       <Footer />
     </>
+  ) : (
+    <Redirect to="/home" />
   );
 }

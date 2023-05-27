@@ -19,9 +19,17 @@
     // }
 }
 .course_body
-{
+{  
     h1 {
         padding-top: 20px;
+    }
+    .Course_item
+    {
+        display: flex;
+        @media only screen and (max-width: 767px)
+        {
+            justify-content: center;
+        }
     }
     .card 
     {  

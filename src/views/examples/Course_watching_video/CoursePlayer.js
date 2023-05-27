@@ -8,6 +8,7 @@ import CourseHeader from "../Course_header/CourseHeader";
 import WallE from "components/LoadingScreen/WallE";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { io } from "socket.io-client";
 import "./CoursePlayer.scss";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -20,6 +21,7 @@ export default function CoursePlayer() {
   const [loading, setLoading] = useState(true);
   const LXCstate = useSelector((state) => state);
   const [complete, setComplete] = useState([]);
+  const [unlock, setUnlock] = useState([]);
   console.log(LXCstate);
   React.useEffect(() => {
     document.body.classList.toggle("index-page");
@@ -39,12 +41,20 @@ export default function CoursePlayer() {
         setLoading(false);
         console.log(response.data.result);
         setCourse(response.data.result);
+        setUnlock((pre) => {
+          return [...pre, response.data.result.chapters[0].lessons[0]._id];
+        });
         dispatch({
           type: "SAVE_LESSON",
           payload: response.data.result.chapters[0].lessons[0],
         });
+        dispatch({
+          type: "SAVE_NEXT_LESSON",
+          payload: response.data.result.chapters[0].lessons[1],
+        });
       });
   }, []);
+
   return LXCstate.auth.username ? (
     loading ? (
       <WallE />
@@ -60,6 +70,8 @@ export default function CoursePlayer() {
                   <Playes
                     course={course}
                     complete={complete}
+                    unlock={unlock}
+                    setUnlock={setUnlock}
                     setComplete={setComplete}
                   />
                 ) : (
@@ -67,7 +79,11 @@ export default function CoursePlayer() {
                 )}
               </Col>
               <Col className="sidebar_col">
-                <SidebarCourse chapters={course.chapters} complete={complete} />
+                <SidebarCourse
+                  chapters={course.chapters}
+                  complete={complete}
+                  unlock={unlock}
+                />
               </Col>
             </Row>
           </Container>

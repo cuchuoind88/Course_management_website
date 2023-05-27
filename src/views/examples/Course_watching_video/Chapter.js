@@ -2,7 +2,14 @@ import React from "react";
 import { useState } from "react";
 import "./Chapter.scss";
 import Lessons from "./Lessons";
-export default function Chapter({ chapter, activeId, setActiveId, complete }) {
+export default function Chapter({
+  chapter,
+  nextchapter,
+  activeId,
+  setActiveId,
+  complete,
+  unlock,
+}) {
   const [openChapter, setOpenChapter] = useState("");
   const toggleOpen = () => {
     setOpenChapter(!openChapter);
@@ -19,8 +26,10 @@ export default function Chapter({ chapter, activeId, setActiveId, complete }) {
         <Lessons
           complete={complete}
           lessons={chapter.lessons}
+          nextchapter={nextchapter}
           activeId={activeId}
           setActiveId={setActiveId}
+          unlock={unlock}
         />
       )}
     </>

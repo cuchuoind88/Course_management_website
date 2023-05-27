@@ -8,7 +8,6 @@ import JavaScript from "views/IndexSections/JavaScript.js";
 import { useState } from "react";
 import Loading from "components/LoadingScreen/Loading";
 import Modal2 from "./IndexSections/Modal/Modal2";
-
 export default function Index() {
   const [formModal, setFormModal] = React.useState(false);
   const [loading, setLoading] = useState(false);

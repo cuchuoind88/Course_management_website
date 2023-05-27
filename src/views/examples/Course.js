@@ -21,6 +21,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import LoadingScreen2 from "components/LoadingScreen/LoadingScreen2";
 import CourseHeader from "./Course_header/CourseHeader";
+import CourseSearch from "./Course_Search/CourseSearch";
 export default function Course() {
   // React.useEffect(() => {
   //   document.body.classList.toggle("index-page");
@@ -58,14 +59,14 @@ export default function Course() {
         <CourseHeader title="Archives: Courses" />
         <Container>
           <div className="course_body">
-            <h1>Algolia</h1>
+            <CourseSearch />
             {loading ? (
               <LoadingScreen2 />
             ) : (
               <Row>
                 {courses?.map((course) => {
                   return (
-                    <Col lg="4" md="6" key={course._id}>
+                    <Col lg="4" md="6" key={course._id} className="Course_item">
                       <Card
                         style={{
                           width: "19rem",

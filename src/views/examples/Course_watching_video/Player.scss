@@ -24,3 +24,80 @@
             color: black;
             margin-bottom: 20px;
         }
+.Warning_Modal
+{
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1999;
+    .Warning_Modal_Overlay
+    {
+    background-color: rgba(0,0,0,.3);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 0;
+        .Warning_Body
+        {
+        background-color: #fff;
+        border-radius: 10px;
+        max-width: 80vw;
+        // position: absolute;
+        // top: 41%;
+        // left: 30%;
+        width: 600px;
+        z-index: 1;
+        .Warning_Header
+        {
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        font-size: 1.8rem;
+        padding: 20px 16px 16px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .Warning_Title
+        {
+            margin: 0;
+            font-weight: 600;
+        }
+        .Warning_Close
+        {
+            background-color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            outline: none;
+            height: 30px;
+            line-height: 30px;
+            width: 30px;
+            color: gray
+        }
+        }
+        .Warning_content_wrapper
+        {
+            padding: 24px 24px 24px 16px;
+            .Warning_content
+            {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 24px
+            }
+            .Warning_action
+            {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+        }
+    }
+}

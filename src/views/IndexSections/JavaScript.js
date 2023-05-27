@@ -1,6 +1,4 @@
 import React from "react";
-import classnames from "classnames";
-// react plugin used to create datetimepicker
 import ReactDatetime from "react-datetime";
 import "./Javascript.scss";
 

@@ -5,7 +5,9 @@ const initialState = {
     userRole: "",
   },
   userDetails: {},
-  currentCourse: {},
+  currentLesson: {},
+  nextLesson: {},
+  socket: {},
 };
 
 export default initialState;

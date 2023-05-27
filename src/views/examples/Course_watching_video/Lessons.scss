@@ -12,6 +12,7 @@
         }
         p {
             margin: 0;
+            width: 150px;
         }
     }
     .lesson_item:hover
@@ -22,5 +23,23 @@
     .active
     {
         background: rgba(240,81,35,.2);
+    }
+    .lesson_item_lock
+    {
+        display: flex;
+        background-color: #e7e7e7;
+        opacity: .6;
+        justify-content: space-between;
+        padding:10px 15px 10px 15px ;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        p {
+            margin: 0;
+           width: 150px;
+        }
+        .icon_lock
+        {
+           color: #525f7f;
+        }
     }
 }

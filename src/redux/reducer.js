@@ -12,18 +12,34 @@ function LXCReducer(state = initialState, action) {
       };
     case "LOG_OUT":
       return {
+        ...state,
         auth: {
           username: "",
           userId: "",
           userRole: "",
         },
-        currentCourse: {},
+        currentLesson: {},
         userDetails: {},
       };
     case "POPULATE_USER_DETAILS":
       return {
         ...state,
         userDetails: action.payload,
+      };
+    case "SAVE_LESSON":
+      return {
+        ...state,
+        currentLesson: action.payload,
+      };
+    case "SAVE_NEXT_LESSON":
+      return {
+        ...state,
+        nextLesson: action.payload,
+      };
+    case "SET_SOCKET":
+      return {
+        ...state,
+        socket: action.payload,
       };
     default:
       return state;
