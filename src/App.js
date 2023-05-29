@@ -14,6 +14,8 @@ import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import ForgotPassword from "views/examples/ForgotPassword/ForgotPassword";
+import ResetPassword from "views/examples/ResetPassowrd/ResetPassword";
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -48,6 +50,8 @@ export default function App() {
           path="/watching/:courseId"
           render={(props) => <CoursePlayer />}
         />
+        <Route path="/account-reset" render={(props) => <ForgotPassword />} />
+        <Route path="/passwordReset" render={(props) => <ResetPassword />} />
         {/* <Route path="/search" render={(props) => <CourseSearch {...props} />} /> */}
         <Redirect from="/" to="/home" />
       </Switch>

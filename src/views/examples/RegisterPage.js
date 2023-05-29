@@ -24,8 +24,10 @@ export default function RegisterPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   const [bder, setBoder] = useState("");
+  const [showOTP, setShowOTP] = useState(false);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const [verifyCode, setVerifyCode] = useState("");
   const url = "http://localhost:2002/student/sign-up";
   const CreateNewUser = (values) => {
     setLoading(true);
@@ -38,8 +40,10 @@ export default function RegisterPage() {
       })
       .then((response) => {
         setLoading(false);
-        history.push("/courses");
-        localStorage.setItem("token", response.data.token);
+        // history.push("/courses");
+        setShowOTP(true);
+        console.log(response.data);
+        localStorage.setItem("email", response.data.email);
       })
       .catch((err) => {
         if (err.response) {
@@ -69,6 +73,24 @@ export default function RegisterPage() {
       CreateNewUser(values);
     },
   });
+  const SendOTP = async (code) => {
+    await axios
+      .post("http://localhost:2002/student/account/verify-account", {
+        email: localStorage.getItem("email"),
+        verifyCode: code,
+      })
+      .then((res) => {
+        console.log(res);
+        alert(res.data.message);
+        history.push("/courses");
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.status);
+        }
+      });
+    console.log(code);
+  };
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -129,88 +151,139 @@ export default function RegisterPage() {
                           <CardTitle tag="h4">Register</CardTitle>
                         </CardHeader>
                         <CardBody>
-                          <form onSubmit={formik.handleSubmit}>
-                            <div className="input-group">
-                              <div className="input-group-prepend">
-                                <span className={`input-group-text ${bder} `}>
-                                  <i className="tim-icons icon-single-02 "></i>
-                                </span>
-                              </div>
-                              <input
-                                className={`form-control ${bder}`}
-                                id="userName"
-                                name="userName"
-                                placeholder="User name"
-                                type="text"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                onFocus={HandleBorderColor}
-                                value={formik.values.userName}
-                              />
-                            </div>
-                            {formik.touched.userName &&
-                            formik.errors.userName ? (
-                              <div className="error">
-                                {formik.errors.userName}
-                              </div>
-                            ) : null}
-                            <div className="input-group">
-                              <div className="input-group-prepend">
-                                <span className={`input-group-text ${bder} `}>
-                                  <i className="tim-icons icon-email-85"></i>
-                                </span>
-                              </div>
-                              <input
-                                className={`form-control ${bder}`}
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder="Email"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.email}
-                              />
-                            </div>
-                            {formik.touched.email && formik.errors.email ? (
-                              <div className="error">{formik.errors.email}</div>
-                            ) : null}
-                            <div className="input-group">
-                              <div className="input-group-prepend">
-                                <span className={`input-group-text ${bder}`}>
-                                  <i className="tim-icons icon-lock-circle"></i>
-                                </span>
-                              </div>
-                              <input
-                                className={`form-control ${bder}`}
-                                placeholder="Password"
-                                id="password"
-                                name="password"
-                                type="password"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.password}
-                              />
-                            </div>
-                            {formik.touched.password &&
-                            formik.errors.password ? (
-                              <div className="error">
-                                {formik.errors.password}
-                              </div>
-                            ) : null}
-
-                            <Button
-                              className="btn-round"
-                              color="primary"
-                              size="lg"
-                              type="submit"
+                          {showOTP ? (
+                            <div
+                              className="OTP_Code"
+                              style={{
+                                marginBottom: "10px",
+                                outline: "none",
+                                padding: "8px",
+                              }}
                             >
-                              Get Started
-                            </Button>
-                          </form>
+                              <h4>Verify Code</h4>
+                              <input
+                                className="input_otp"
+                                style={{
+                                  marginBottom: "10px",
+                                  outline: "none",
+                                  padding: "8px",
+                                }}
+                                value={verifyCode}
+                                onChange={(e) => {
+                                  setVerifyCode(e.target.value);
+                                }}
+                              />
+                              <button
+                                color="success"
+                                style={{
+                                  padding: "5px",
+                                  color: "blue",
+                                  backgroundColor: "#fff",
+                                  border: "1px solid #fff",
+                                  borderRadius: "5px",
+                                }}
+                                size="lg"
+                                onClick={() => {
+                                  SendOTP(verifyCode);
+                                }}
+                              >
+                                Send Verify Code
+                              </button>
+                            </div>
+                          ) : (
+                            <form onSubmit={formik.handleSubmit}>
+                              <>
+                                <div className="input-group">
+                                  <div className="input-group-prepend">
+                                    <span
+                                      className={`input-group-text ${bder} `}
+                                    >
+                                      <i className="tim-icons icon-single-02 "></i>
+                                    </span>
+                                  </div>
+                                  <input
+                                    className={`form-control ${bder}`}
+                                    id="userName"
+                                    name="userName"
+                                    placeholder="User name"
+                                    type="text"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    onFocus={HandleBorderColor}
+                                    value={formik.values.userName}
+                                  />
+                                </div>
+                                {formik.touched.userName &&
+                                formik.errors.userName ? (
+                                  <div className="error">
+                                    {formik.errors.userName}
+                                  </div>
+                                ) : null}
+                                <div className="input-group">
+                                  <div className="input-group-prepend">
+                                    <span
+                                      className={`input-group-text ${bder} `}
+                                    >
+                                      <i className="tim-icons icon-email-85"></i>
+                                    </span>
+                                  </div>
+                                  <input
+                                    className={`form-control ${bder}`}
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    placeholder="Email"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.email}
+                                  />
+                                </div>
+                                {formik.touched.email && formik.errors.email ? (
+                                  <div className="error">
+                                    {formik.errors.email}
+                                  </div>
+                                ) : null}
+                                <div className="input-group">
+                                  <div className="input-group-prepend">
+                                    <span
+                                      className={`input-group-text ${bder}`}
+                                    >
+                                      <i className="tim-icons icon-lock-circle"></i>
+                                    </span>
+                                  </div>
+                                  <input
+                                    className={`form-control ${bder}`}
+                                    placeholder="Password"
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    value={formik.values.password}
+                                  />
+                                </div>
+                                {formik.touched.password &&
+                                formik.errors.password ? (
+                                  <div className="error">
+                                    {formik.errors.password}
+                                  </div>
+                                ) : null}
+                                <Button
+                                  className="btn-round"
+                                  color="primary"
+                                  size="lg"
+                                  type="submit"
+                                >
+                                  Get Started
+                                </Button>
+                              </>
+                            </form>
+                          )}
                         </CardBody>
                       </Card>
                     </Col>
                   </Row>
+
                   <div className="register-bg" />
                   <div
                     className="square square-1"
