@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   FormGroup,
@@ -16,6 +17,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
+import "./Modal.scss";
 export default function Modal2({
   formModal,
   setFormModal,
@@ -188,6 +190,9 @@ export default function Modal2({
               <span className="form-check-sign" />
               Remember me!
             </Label>
+            <h5 className="forgot_password">
+              <Link to="/account-reset">Forgot password?</Link>
+            </h5>
           </FormGroup>
           <div className="text-center">
             {error && (
