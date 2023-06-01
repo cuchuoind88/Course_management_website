@@ -18,11 +18,52 @@ import {
   Card,
 } from "reactstrap";
 import { useParams } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar";
 export default function CourseDetail() {
+  const dispatch = useDispatch();
+  const verifyLogin = async () => {
+    if (localStorage.token) {
+      const decode = jwt_decode(localStorage.getItem("token"));
+      console.log(decode);
+      dispatch({
+        type: "LOG_IN",
+        payload: decode,
+      });
+      const currentTime = Date.now() / 1000;
+      if (decode.exp < currentTime) {
+        dispatch({
+          type: "LOG_OUT",
+        });
+      }
+    }
+  };
+  const grabUserDetails = () => {
+    axios
+      .get("http://localhost:2002/student/view-profile", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        dispatch({
+          type: "POPULATE_USER_DETAILS",
+          payload: response.data.result,
+        });
+        console.log(LXCstate);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    verifyLogin();
+    grabUserDetails();
+  }, []);
   const { courseId } = useParams();
   const [orderLink, setLink] = useState("");
   console.log(orderLink);
@@ -74,101 +115,104 @@ export default function CourseDetail() {
         setLoading(false);
       });
   }, []);
-
-  return LXCstate.auth.username ? (
+  return (
     <>
-      <ExamplesNavbar />
-      <div className="course_Detail_body">
-        <CourseHeader title={course.title} />
-        <Container>
-          <div className="course_Detail_title">
-            <h1>{course.title}</h1>
+      {localStorage.token ? (
+        <>
+          <ExamplesNavbar />
+          <div className="course_Detail_body">
+            <CourseHeader title={course.title} />
+            <Container>
+              <div className="course_Detail_title">
+                <h1>{course.title}</h1>
+              </div>
+              {loading ? (
+                <LoadingScreen2 />
+              ) : (
+                <Row>
+                  <Col lg="7" md="6">
+                    <h3>Course Decriptsion</h3>
+                    <p className="text-muted Course_Desc  ">
+                      {course.courseDetails}
+                      <br></br>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Quis ipsum suspendisse ultrices gravida. Risus
+                      commodo viverra maecenas accumsan lacus vel facilisis.
+                    </p>
+                    <h3 className="course_desc_title">
+                      What You’ll Learn From This Course
+                    </h3>
+                    <ul>
+                      <li className="text-muted">
+                        Neque sodales ut etiam sit amet nisl purus non tellus
+                        orci ac auctor
+                      </li>
+                      <li className="text-muted">
+                        Tristique nulla aliquet enim tortor at auctor urna. Sit
+                        amet aliquam id diam maer
+                      </li>
+                      <li className="text-muted">
+                        Nam libero justo laoreet sit amet. Lacus sed viverra
+                        tellus in hac
+                      </li>
+                      <li className="text-muted">
+                        Tempus imperdiet nulla malesuada pellentesque elit eget
+                        gravida cum sociis
+                      </li>
+                    </ul>
+                    <h3>Certification</h3>
+                    <p className="certification">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Quis ipsum suspendisse ultrices gravida. Risus
+                      commodo viverra maecenas accumsan lacus vel facilisis.
+                    </p>
+                    <Button color="warning" onClick={EnrollCourse}>
+                      Enroll
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Card
+                      style={{
+                        width: "20rem",
+                      }}
+                    >
+                      <div className="card_wrapper">
+                        <img alt="Sample" src={course.thumbnail} />
+                        <CardBody>
+                          <CardTitle tag="h3">{course.title}</CardTitle>
+                          <CardSubtitle className="mb-2 text-muted" tag="h6">
+                            <i class="tim-icons icon-tap-02"></i>
+                            <p>{course.views} viewed</p>
+                          </CardSubtitle>
+                          <CardText>
+                            Skills you'll gain: Front-End Web Development,
+                            Full-Stack Web Development
+                          </CardText>
+                          <CardText>
+                            <div className="Price">
+                              <i class="tim-icons icon-coins"></i>
+                              <p>{course.price}</p>
+                            </div>
+                            <div className="Enrollment">
+                              <i class="tim-icons icon-single-02"></i>
+                              <p>{course.enrolledCount} Students</p>
+                            </div>
+                          </CardText>
+                        </CardBody>
+                      </div>
+                    </Card>
+                  </Col>
+                </Row>
+              )}
+            </Container>
           </div>
-          {loading ? (
-            <LoadingScreen2 />
-          ) : (
-            <Row>
-              <Col lg="7" md="6">
-                <h3>Course Decriptsion</h3>
-                <p className="text-muted Course_Desc  ">
-                  {course.courseDetails}
-                  <br></br>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                  maecenas accumsan lacus vel facilisis.
-                </p>
-                <h3 className="course_desc_title">
-                  What You’ll Learn From This Course
-                </h3>
-                <ul>
-                  <li className="text-muted">
-                    Neque sodales ut etiam sit amet nisl purus non tellus orci
-                    ac auctor
-                  </li>
-                  <li className="text-muted">
-                    Tristique nulla aliquet enim tortor at auctor urna. Sit amet
-                    aliquam id diam maer
-                  </li>
-                  <li className="text-muted">
-                    Nam libero justo laoreet sit amet. Lacus sed viverra tellus
-                    in hac
-                  </li>
-                  <li className="text-muted">
-                    Tempus imperdiet nulla malesuada pellentesque elit eget
-                    gravida cum sociis
-                  </li>
-                </ul>
-                <h3>Certification</h3>
-                <p className="certification">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                  maecenas accumsan lacus vel facilisis.
-                </p>
-                <Button color="warning" onClick={EnrollCourse}>
-                  Enroll
-                </Button>
-              </Col>
-              <Col>
-                <Card
-                  style={{
-                    width: "20rem",
-                  }}
-                >
-                  <div className="card_wrapper">
-                    <img alt="Sample" src={course.thumbnail} />
-                    <CardBody>
-                      <CardTitle tag="h3">{course.title}</CardTitle>
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        <i class="tim-icons icon-tap-02"></i>
-                        <p>{course.views} viewed</p>
-                      </CardSubtitle>
-                      <CardText>
-                        Skills you'll gain: Front-End Web Development,
-                        Full-Stack Web Development
-                      </CardText>
-                      <CardText>
-                        <div className="Price">
-                          <i class="tim-icons icon-coins"></i>
-                          <p>{course.price}</p>
-                        </div>
-                        <div className="Enrollment">
-                          <i class="tim-icons icon-single-02"></i>
-                          <p>{course.enrolledCount} Students</p>
-                        </div>
-                      </CardText>
-                    </CardBody>
-                  </div>
-                </Card>
-              </Col>
-            </Row>
-          )}
-        </Container>
-      </div>
-      <Footer />
+          <Footer />
+        </>
+      ) : (
+        <Redirect to="/home" />
+      )}
     </>
-  ) : (
-    <Redirect to="/home" />
   );
 }

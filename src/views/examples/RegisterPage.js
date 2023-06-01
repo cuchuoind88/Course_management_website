@@ -82,6 +82,7 @@ export default function RegisterPage() {
       .then((res) => {
         console.log(res);
         alert(res.data.message);
+        localStorage.removeItem("email");
         history.push("/courses");
       })
       .catch((err) => {

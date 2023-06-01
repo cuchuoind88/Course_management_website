@@ -6,8 +6,9 @@ import "assets/demo/demo.css";
 import Index from "views/Index.js";
 import RegisterPage from "views/examples/RegisterPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
-import CourseSearch from "views/examples/Course_Search/CourseSearch";
 import Course from "views/examples/Course";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 import CourseDetail from "views/examples/CourseDetail";
 import CoursePlayer from "views/examples/Course_watching_video/CoursePlayer";
 import { io } from "socket.io-client";
@@ -18,6 +19,35 @@ import ForgotPassword from "views/examples/ForgotPassword/ForgotPassword";
 import ResetPassword from "views/examples/ResetPassowrd/ResetPassword";
 export default function App() {
   const dispatch = useDispatch();
+  const LXCstate = useSelector((state) => state);
+  // const verifyLogin = async () => {
+  //   if (localStorage.token) {
+  //     const decode = jwt_decode(localStorage.getItem("token"));
+  //     console.log(decode);
+  //     dispatch({
+  //       type: "LOG_IN",
+  //       payload: decode,
+  //     });
+  //   }
+  // };
+  // const grabUserDetails = () => {
+  //   axios
+  //     .get("http://localhost:2002/student/view-profile", {
+  //       headers: {
+  //         Authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //     })
+  //     .then((response) => {
+  //       dispatch({
+  //         type: "POPULATE_USER_DETAILS",
+  //         payload: response.data.result,
+  //       });
+  //       console.log(LXCstate);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
   useEffect(() => {
     const socket = io.connect("http://localhost:2002");
     console.log(socket);
@@ -25,6 +55,8 @@ export default function App() {
       type: "SET_SOCKET",
       payload: socket,
     });
+    // verifyLogin();
+    // grabUserDetails();
     return () => {
       socket.disconnect();
     };

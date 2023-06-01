@@ -20,6 +20,8 @@ function LXCReducer(state = initialState, action) {
         },
         currentLesson: {},
         userDetails: {},
+        nextLesson: {},
+        socket: {},
       };
     case "POPULATE_USER_DETAILS":
       return {
